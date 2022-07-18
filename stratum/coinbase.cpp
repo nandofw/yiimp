@@ -292,14 +292,14 @@ void coinbase_create(YAAMP_COIND *coind, YAAMP_JOB_TEMPLATE *templ, json_value *
 		return;
 	}
 
-	else if(strcmp(coind->symbol, "RTM") == 0)
+	else if(strcmp(coind->symbol, "RTM") == 0 || strcmp(coind->symbol, "YERB") == 0)
 	{
 		char payees[4];
 		int npayees = 1;
 		char script_dests[4096] = { 0 };
 	
  		json_value* smartnode = json_get_object(json_result, "smartnode");
-		debuglog("RTM DETECTED Json: RESULT %s\n", smartnode);
+		debuglog("%s DETECTED Json: RESULT %s\n", coind->symbol, smartnode);
 		bool smartnode_started = json_get_bool(json_result, "smartnode_payments_started");
 		if (smartnode_started && smartnode)
 		{
